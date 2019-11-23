@@ -33,8 +33,8 @@ public class MeetingService {
 		return registered;
 	}
 
-	private void calculateEndTime(Meeting m, MeetingType mt) {
-		Calendar calendar = m.getDate();
+	private void calculateEndTime(Meeting meeting, MeetingType meetingType) {
+		Calendar calendar = meeting.getDate();
 		System.out.println(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(calendar.getTime()));//11:30
 	
 		Calendar endTime = Calendar.getInstance();
@@ -43,10 +43,10 @@ public class MeetingService {
 		System.out.println(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(endTime.getTime()));
 		
 		
-		endTime.add(Calendar.MINUTE, mt.getTime().getMinute());
+		endTime.add(Calendar.MINUTE, meetingType.getTime().getMinute());
 		System.out.println(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(endTime.getTime()));
 
-		m.setEndTime(endTime);
+		meeting.setEndTime(endTime);
 	}
 	
 	public MeetingType saveType(MeetingType meetingType) {

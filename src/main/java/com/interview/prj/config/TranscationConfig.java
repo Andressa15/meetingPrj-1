@@ -18,9 +18,9 @@ public class TranscationConfig {
 	public DataSource getDataSource() {
 		DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
 //		dataSourceBuilder.driverClassName("org.h2.Driver");
-		dataSourceBuilder.url("jdbc:sqlserver://localhost:1433;databaseName=vm_integracao");
-		dataSourceBuilder.username("SA");
-		dataSourceBuilder.password("1");
+		dataSourceBuilder.url("jdbc:mysql://localhost:3306/agenda");
+		dataSourceBuilder.username("root");
+		dataSourceBuilder.password("12345678Qwertyui#");
 		return dataSourceBuilder.build();
 	}
 }

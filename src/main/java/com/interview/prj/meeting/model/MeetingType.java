@@ -28,5 +28,30 @@ public class MeetingType {
 	@DateTimeFormat
 	@JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime time;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public LocalDateTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalDateTime time) {
+		this.time = time;
+	}
+	
 	
 }

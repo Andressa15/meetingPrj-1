@@ -22,4 +22,22 @@ public class Person {
 	@Column(name="Identification")
 	private String identification;
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getIdentification() {
+		return identification;
+	}
+	public void setIdentification(String identification) {
+		this.identification = identification;
+	}
 }
