@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -28,7 +27,6 @@ public class RoomRestController {
 	@Autowired
 	private RoomService service;
 	 
-	//Se quiser cadastrar chama esse  , o que diferencia cada um , é exatamente as anotacoes @PostMapping ou @GetMapping e POST para esse
 	@PostMapping 
 	public ResponseEntity<String> registryRoom(@RequestBody Room room, UriComponentsBuilder builder){
 		Room registered = service.registryRoom(room);
@@ -40,20 +38,25 @@ public class RoomRestController {
 	public ResponseEntity<Room> registryRoom(@PathVariable("id") long id){
 		Optional<Room> optional = service.findById(id);
 		if(!optional.isPresent()) {
-	          return new ResponseEntity<Room>(HttpStatus.NOT_FOUND);//Vmos descer uma mensagem tambem , ficou confuso , normalmente a gente desce o codigo de erro ,e uma msg
+	          return new ResponseEntity<Room>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Room>(optional.get(),HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/{id}") //COmendo pão é kk se quiser ir tentando fazer blz tambem to kkk 
-	public ResponseEntity<String> deleteRoom(@PathVariable("id") Long idSala){  //URL : /room -> metodo DELETE
+	@PutMapping
+	public ResponseEntity<Room> updateRoom(@RequestBody Room room ){
+		Room registered = service.updateRoom(room);
+		return new ResponseEntity<Room>(registered,HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}") 
+	public ResponseEntity<String> deleteRoom(@PathVariable("id") Long idSala){ 
 		 service.deleteRoom(idSala);
 		 
 		System.out.println(idSala);
 		return ResponseEntity.ok("ok");
 	}
 
-    //A gente vai usar este metodo aaqui , ele vai retornar todas salas cadastradas , a uri é http://localhost:8081/room o método http é GET
 	@GetMapping
 	public ResponseEntity<List<Room>> getAll(){
 		List<Room> rooms = service.findAll();

@@ -28,9 +28,13 @@ public class RoomService {
 	public List<Room> findAll() {
 		return repository.findAll();
 	}
-    public void updateRoom(Room room, Long id) {
-    	room.setId(id);
-    	repository.save(room); 
+    public Room updateRoom(Room room ){
+//    	Optional<Room> opt = repository.findById(id);
+//    	if(opt.isPresent()) {
+//    		System.out.println("Sala não encontrada");
+//    		return;
+//    	}
+    	return repository.save(room);
     }
     public void deleteRoom( Long id ) {
     	repository.deleteById(id);

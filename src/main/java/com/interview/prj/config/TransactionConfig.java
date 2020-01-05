@@ -8,19 +8,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@Configuration
-@EnableTransactionManagement
-@EnableJpaRepositories(basePackages = { "com.interview.prj.meeting.repository", "com.interview.prj.person.repository",
-		"com.interview.prj.room.repository", "com.interview.prj.login.repository" })
-public class TranscationConfig {
+//@Configuration
+//@EnableTransactionManagement
+//@EnableJpaRepositories(basePackages = { "com.interview.prj.meeting.repository", "com.interview.prj.person.repository",
+	//	"com.interview.prj.room.repository", "com.interview.prj.login.repository" })
+public class TransactionConfig {
 
-	@Bean
+	//@Bean
 	public DataSource getDataSource() {
 		DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
 //		dataSourceBuilder.driverClassName("org.h2.Driver");
-		dataSourceBuilder.url("jdbc:mysql://localhost:3306/agenda");
-		dataSourceBuilder.username("root");
-		dataSourceBuilder.password("12345678Qwertyui#");
+		dataSourceBuilder.url("jdbc:sqlserver://1433;DatabaseName=agenda");
+		dataSourceBuilder.username("sa");
+		dataSourceBuilder.password("andressa");
 		return dataSourceBuilder.build();
 	}
 }

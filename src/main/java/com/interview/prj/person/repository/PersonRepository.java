@@ -11,5 +11,4 @@ import com.interview.prj.person.model.Person;
 public interface PersonRepository extends JpaRepository<Person, Long>{
 
 	Optional<Person> findByIdentification(String identification);
-
 }
