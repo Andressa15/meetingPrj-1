@@ -7,5 +7,10 @@ import com.interview.prj.meeting.model.MeetingType;
 
 @Repository
 public interface MeetingTypeRepository extends JpaRepository<MeetingType,Long>{
+	
+//	Optional<MeetingType> deleteById(Long id);
+//	Optional<Person> findByMeetingType(MeetingType meetingType);
+
+
 
 }
