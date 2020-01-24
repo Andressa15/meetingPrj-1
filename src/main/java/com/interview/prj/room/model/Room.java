@@ -25,6 +25,7 @@ public class Room {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
