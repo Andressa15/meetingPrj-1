@@ -18,16 +18,9 @@ public class PersonService {
 	private PersonRepository personRepository;
 	
 	public Person insert(Person person) {
-		//Pegar o cpf e pesquisa no banco se ja tem alguem Se sim rejeitar se não , cadastrar.
-		Optional<Person> opt = personRepository.findByIdentification(person.getIdentification());
-		if(opt.isPresent()) {
-			return null;
-		}
-		
-		Person registered = personRepository.save(person);
-		return registered;
+		return personRepository.save(person);
 	}
-
+	
 	public Optional<Person> findByIdentification(String identification) {
 		return personRepository.findByIdentification(identification);
 	}

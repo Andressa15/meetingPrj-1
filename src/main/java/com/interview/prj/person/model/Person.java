@@ -1,11 +1,16 @@
 package com.interview.prj.person.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+
+import org.hibernate.validator.constraints.br.CPF;
+
 
 import lombok.Data;
 
@@ -17,8 +22,12 @@ public class Person {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotEmpty
 	@Column(name="Name")
 	private String name;
+
+	@CPF
 	@Column(name="Identification")
 	private String identification;
 	

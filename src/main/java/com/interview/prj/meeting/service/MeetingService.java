@@ -2,6 +2,7 @@ package com.interview.prj.meeting.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,7 +11,6 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.interview.prj.exception.DataInvalida;
 import com.interview.prj.exception.InvalidMeetingSubject;
 import com.interview.prj.exception.PessoaNaoEncontradaErro;
 import com.interview.prj.exception.SalaExisteErro;
@@ -41,20 +41,20 @@ public class MeetingService {
 
 	public Meeting saveMeeting(Meeting meeting) {
 
-		if(meeting.getSubject().length() == 0)
+		if (meeting.getSubject().length() == 0)
 			throw new InvalidMeetingSubject("Assunto da reunião não pode estar vazio.");
-		
+
 		verificarPessoaExistente(meeting);
 
 		isExistRoom(meeting);
-		
+
 		calculateEndTime(meeting);
 
 		return meetingRepository.save(meeting);
 	}
 
 	private void verificarPessoaExistente(Meeting meeting) {
-		List<Person> guests = meeting.getGuests();
+		Collection<Person> guests = meeting.getGuests();
 		if (guests.isEmpty()) {
 			throw new PessoaNaoEncontradaErro("Lista de convidado não pode ser vazia");
 		}
@@ -66,15 +66,14 @@ public class MeetingService {
 		}
 	}
 
-
 	private void calculateEndTime(Meeting meeting) {
-		Calendar dataAtual = Calendar.getInstance();
+//		Calendar dataAtual = Calendar.getInstance();
 
 		Calendar dataASerAgendada = meeting.getDate();
 		
-		if(dataASerAgendada.before(dataAtual)) {
-			throw new DataInvalida("Data não pode ser menor que a data atual"); 
-		}
+//		if (dataASerAgendada == null || dataASerAgendada.before(dataAtual)) {
+//			throw new DataInvalida("Data não pode ser menor que a data atual");
+//		}
 		
 		System.out.println(new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(dataASerAgendada.getTime()));
 

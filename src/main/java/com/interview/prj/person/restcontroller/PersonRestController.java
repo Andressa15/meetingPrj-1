@@ -4,9 +4,12 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.interview.prj.exception.ArgumentoNaoValidoErro;
 import com.interview.prj.person.model.Person;
 import com.interview.prj.person.service.PersonService;
 
@@ -28,7 +32,10 @@ public class PersonRestController {
 	private PersonService personService;
 
 	@PostMapping
-	public ResponseEntity<String> insert(@RequestBody Person person,UriComponentsBuilder uriBuilder){
+	public ResponseEntity<String> insert(@RequestBody @Valid Person person, BindingResult result , UriComponentsBuilder uriBuilder){
+		if(result.hasErrors()) 
+			throw new ArgumentoNaoValidoErro(result.getFieldErrors());
+		
 		Person registered = personService.insert(person);
 		if( registered == null) {
 			return new ResponseEntity<String>("Pessoa já registrada",HttpStatus.FORBIDDEN); //Proibido
