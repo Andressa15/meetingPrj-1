@@ -9,11 +9,11 @@
 		<version>2.1.10.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.interview.prj</groupId>
-	<artifactId>interview-prj</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>interview-prj</name>
-	<description>Interview project</description>
+	<groupId>com.meetingprj</groupId>
+	<artifactId>meetingprj</artifactId>
+	<version>0.0.1</version>
+	<name>meetingPrj</name>
+	<description>Meeting Project</description>
 
 	<properties>
 		<java.version>1.8</java.version>
