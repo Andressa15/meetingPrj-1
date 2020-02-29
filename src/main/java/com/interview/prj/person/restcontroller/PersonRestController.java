@@ -38,7 +38,7 @@ public class PersonRestController {
 		
 		Person registered = personService.insert(person);
 		if( registered == null) {
-			return new ResponseEntity<String>("Pessoa já registrada",HttpStatus.FORBIDDEN); //Proibido
+			return new ResponseEntity<String>("Pessoa já registrada",HttpStatus.FORBIDDEN); 
 		}
 		URI uri = uriBuilder.path("/person/{identification}").build(registered.getIdentification());
 		return ResponseEntity.created(uri).body("Created");
